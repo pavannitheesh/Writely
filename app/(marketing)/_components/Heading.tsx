@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { useConvexAuth } from "convex/react";
 import { Spinner } from "@/components/spinner";
 import Link from "next/link";
+import { SignInButton } from '@clerk/nextjs';
 const Heading = () => {
     const { isAuthenticated,isLoading } = useConvexAuth();
     return ( 
@@ -22,17 +23,27 @@ const Heading = () => {
         <Spinner size="lg"/>
         </div>}
         {
-            !isAuthenticated && !isLoading && (
-                <Button>
+            isAuthenticated && !isLoading && (
+                <Button asChild>
                     <Link href="/documents">
-                Get Started<ArrowRight/>
+                Enter Jotion
+                <ArrowRight className="h-4 w-4 ml-2"/>
                 </Link>
             </Button>
             )
         }
-        <Button>
-            Get Started<ArrowRight/>
-        </Button>
+        {
+            !isAuthenticated && !isLoading && (
+                <>                <SignInButton mode="modal">
+                <Button>
+                Get Jotion for free
+                <ArrowRight className="h-4 w-4 ml-2"/>
+            </Button>
+            </SignInButton>
+            </>
+
+            )
+        }
         </div>
      );
 }
