@@ -8,7 +8,13 @@ const Hero = () => {
                     src="/hero.png"
                     fill
                     alt="hero"
-                    className="object-contain"
+                    className="object-contain dark:hidden"
+                    />
+                <Image
+                    src="/hero-dark1.jpg"
+                    fill
+                    alt="hero-dark"
+                    className="object-contain hidden dark:block"
                     />
 
                 </div>
