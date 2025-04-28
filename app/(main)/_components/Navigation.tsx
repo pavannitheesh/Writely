@@ -12,7 +12,18 @@ const Navigation = () => {
     const pathname = usePathname();
     const [isCollapse, setIsCollapse] = React.useState(false);
     const [isResetting,setIsResetting]=React.useState(false);
-
+    React.useEffect(() => {
+        if (isMobile) {
+            handleCollapse();
+        } else {
+           handleReset();
+        }
+    }, [isMobile,]);
+    React.useEffect(() => {
+        if (isMobile) {
+            handleCollapse();
+        } 
+    }, [pathname]); 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement,MouseEvent>) => {
        e.preventDefault();
        e.stopPropagation();
