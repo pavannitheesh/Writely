@@ -72,7 +72,7 @@ const Navigation = () => {
 
     return ( 
        <div>
-       <div ref={sidebarRef} className={cn("h-full group/sidebar w-60 bg-secondary overflow-y-auto relative flex flex-col z-[99990]",
+       <div ref={sidebarRef} className={cn("h-full group/sidebar w-60 bg-secondary overflow-y-auto relative flex flex-col z-[999]",
         isResetting && "transition-all duration-300 ease-in-out",
         isMobile && "w-0",
        )}>
