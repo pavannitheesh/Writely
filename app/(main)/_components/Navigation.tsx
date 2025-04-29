@@ -5,6 +5,8 @@ import {useMediaQuery} from 'usehooks-ts';
 import {cn} from "@/lib/utils";
 import { usePathname } from 'next/navigation';
 import UserItem from './UserItem';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 const Navigation = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
@@ -13,6 +15,7 @@ const Navigation = () => {
     const pathname = usePathname();
     const [isCollapse, setIsCollapse] = React.useState(false);
     const [isResetting,setIsResetting]=React.useState(false);
+    const documents=useQuery(api.documents.get);
     React.useEffect(() => {
         if (isMobile) {
             handleCollapse();
@@ -83,7 +86,11 @@ const Navigation = () => {
                <UserItem/>
             </div>
             <div className="mt-2">
-                <p>Documents</p>
+                {documents?.map((document) => (
+                    <div key={document._id} className="p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-md cursor-pointer">
+                        {document.title}
+                    </div>
+                ))}
             </div>
             <div onMouseDown={handleMouseDown} onClick={handleReset} className="opacity-0 group-hover/sidebar:opacity-100 cursor-ew-resize w-1 h-full right-0 top-0 bg-neutral-300 dark:bg-neutral-600 absolute"/>
            
