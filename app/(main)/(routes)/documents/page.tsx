@@ -12,7 +12,7 @@ const Documentspage = () => {
     const handleCreate=()=>{
         const promise = create({title:"Untitled Document"});
         toast.promise(promise,
-            {loading:"Craeting a new note...",
+            {loading:"Creating a new note...",
             success:"Note created successfully",
             error:"Error creating note"});
     }
