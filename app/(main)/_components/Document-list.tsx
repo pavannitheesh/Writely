@@ -5,7 +5,6 @@ import { Id,Doc } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
-import { Skeleton } from '@/components/ui/skeleton';
 import Item from "./Item";
 import { cn } from "@/lib/utils";
 import { FileIcon } from "lucide-react";
@@ -52,7 +51,7 @@ export const DocumentList = (
     return (
        <>
        <p style={{
-        paddingLeft:level? `${(level*12)+25}px`:undefined
+        paddingLeft:level? `${(level*23)+25}px`:undefined
        }}
        className={cn("hidden text-sm text-muted-foreground/80 font-medium",
         expanded && "last:block",
