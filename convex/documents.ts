@@ -76,3 +76,69 @@ export const create=mutation({
     }
 
 })
+
+export const getArchive=query({
+    handler:async (ctx,args)=>{
+        const identity=await ctx.auth.getUserIdentity();
+        if(!identity) throw new Error("User not authenticated");
+        const userId=identity.subject;
+        const documents=await ctx.db.query("documents").withIndex("by_user",(q)=>q
+        .eq("userId",userId)
+    ).filter((q)=>q.eq(q.field("isArchive"),true)).order("desc").collect();
+        return documents;
+    }
+
+})
+export const restore=mutation({
+    args:{
+        id:v.id("documents"),
+    },
+    handler:async (ctx,args)=>{
+        const {id}=args;
+        const identity=await ctx.auth.getUserIdentity();
+        if(!identity) throw new Error("User not authenticated");
+        const userId=identity.subject;
+        const document=await ctx.db.get(id);
+        if(!document) throw new Error("Document not found");
+        if(document.userId!==userId) throw new Error("You are not authorized to restore this document");
+        const options:Partial<Doc<"documents">>={
+            isArchive:false,
+        };
+        if(document.parentDocument){
+            const parentDocument=await ctx.db.get(document.parentDocument);
+            if(parentDocument?.isArchive){
+            options.parentDocument=undefined;
+        }
+        const recursiveRestore=async (docId:Id<"documents">)=>{
+            const childDocuments=await ctx.db.query("documents").withIndex("by_parent",(q)=>q
+            .eq("userId",userId)
+            .eq("parentDocument",docId)
+            ).filter((q)=>q.eq(q.field("isArchive"),true)).collect();
+            for(const childDocument of childDocuments){
+                await ctx.db.patch(childDocument._id,{
+                    isArchive:false
+                });
+                await recursiveRestore(childDocument._id);
+            }
+        }
+        const doc=await ctx.db.patch(id,options);
+        recursiveRestore(id);
+
+        return doc;
+    }
+}})
+export const remove=mutation({
+    args:{
+        id:v.id("documents"),
+    },
+    handler:async (ctx,args)=>{
+        const {id}=args;
+        const identity=await ctx.auth.getUserIdentity();
+        if(!identity) throw new Error("User not authenticated");
+        const userId=identity.subject;
+        const document=await ctx.db.get(id);
+        if(!document) throw new Error("Document not found");
+        if(document.userId!==userId) throw new Error("You are not authorized to remove this document");
+        await ctx.db.delete(id);
+    }
+})

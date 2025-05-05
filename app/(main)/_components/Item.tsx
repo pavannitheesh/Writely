@@ -27,7 +27,7 @@ interface ItemProps {
     onExpand?:()=>void,
     label: string;
     icon: LucideIcon;
-    onClick: () => void;
+    onClick?: () => void;
 }
 const Item = ({id,documentIcon,label,icon:Icon,onClick,expanded,onExpand,active,isSearch,level=0}:ItemProps) => {
     const ChevronIcon = expanded ? ChevronDown : ChevronRight;

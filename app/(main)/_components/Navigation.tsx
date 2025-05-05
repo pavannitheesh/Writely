@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import {useMediaQuery} from 'usehooks-ts';
 import {cn} from "@/lib/utils";
 import { usePathname } from 'next/navigation';
@@ -10,6 +10,12 @@ import { api } from '@/convex/_generated/api';
 import Item from './Item';
 import { toast } from 'sonner';
 import { DocumentList } from './Document-list';
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+import TrashBox from './TrashBox';
 const Navigation = () => {
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
@@ -112,8 +118,21 @@ const Navigation = () => {
                 label="Create New Document"
                 />
             </div>
-            <div className="mt-2">
+            <div className="mt-4">
                 <DocumentList/>
+                <Item
+                    onClick={handleCreate}
+                    icon={Plus}
+                    label="Add a Page"/>
+                    <Popover>
+                        <PopoverTrigger className='w-full mt-4'>
+                            <Item label="Trash" icon={Trash}/>
+                        </PopoverTrigger>
+                        <PopoverContent side={isMobile ? "bottom" : "right"} className="w-70">
+                            <TrashBox/>
+                        </PopoverContent>
+                    </Popover>
+
             </div>
             <div onMouseDown={handleMouseDown} onClick={handleReset} className="opacity-0 group-hover/sidebar:opacity-100 cursor-ew-resize w-1 h-full right-0 top-0 bg-neutral-300 dark:bg-neutral-600 absolute"/>
            
