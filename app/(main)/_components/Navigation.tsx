@@ -128,7 +128,7 @@ const Navigation = () => {
                         <PopoverTrigger className='w-full mt-4'>
                             <Item label="Trash" icon={Trash}/>
                         </PopoverTrigger>
-                        <PopoverContent side={isMobile ? "bottom" : "right"} className="w-70">
+                        <PopoverContent side={isMobile ? "bottom" : "right"} className="w-96">
                             <TrashBox/>
                         </PopoverContent>
                     </Popover>

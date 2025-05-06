@@ -78,7 +78,7 @@ export const create=mutation({
 })
 
 export const getArchive=query({
-    handler:async (ctx,args)=>{
+    handler:async (ctx)=>{
         const identity=await ctx.auth.getUserIdentity();
         if(!identity) throw new Error("User not authenticated");
         const userId=identity.subject;

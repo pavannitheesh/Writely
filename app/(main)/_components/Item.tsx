@@ -107,7 +107,7 @@ const Item = ({id,documentIcon,label,icon:Icon,onClick,expanded,onExpand,active,
                     <div className="ml-auto flex items-center gap-x-2">
                        <DropdownMenu>
                         <DropdownMenuTrigger asChild className="opacity-0 group-hover:opacity-100  h-full rounded-sm bg-neutral-300 dark:bg-neutral-600 mr-2" >
-                            <MoreHorizontal className="h-4 w-4 shrink-0 text-muted-foreground/50"/>
+                            <MoreHorizontal className="h-4 w-4  shrink-0 text-muted-foreground/50"/>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start" side="right" className="w-60" forceMount>
                             <DropdownMenuItem onClick={onArchive}>
