@@ -109,6 +109,7 @@ export const restore=mutation({
             if(parentDocument?.isArchive){
             options.parentDocument=undefined;
         }
+    }
         const recursiveRestore=async (docId:Id<"documents">)=>{
             const childDocuments=await ctx.db.query("documents").withIndex("by_parent",(q)=>q
             .eq("userId",userId)
@@ -126,7 +127,7 @@ export const restore=mutation({
 
         return doc;
     }
-}})
+})
 export const remove=mutation({
     args:{
         id:v.id("documents"),

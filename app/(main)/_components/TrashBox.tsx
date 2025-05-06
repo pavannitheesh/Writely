@@ -66,7 +66,7 @@ const TrashBox = () => {
                 <Search className='h-4 w-4 text-gray-500'/>
                 <Input
                  value={search}
-                 onChange={(e)=>handleSearch(e)}
+                 onChange={(e)=>setSearch(e.target.value)}
                     placeholder='Filter by page title..'
                  />
             </div>
@@ -81,9 +81,11 @@ const TrashBox = () => {
                     <div key={document._id} role="button" className='flex items-center text-neutral-500 font-semibold justify-between mt-1 hover:bg-primary/5 rounded-md cursor-pointer w-full' onClick={()=>onClick(document._id)}>
                             <span className='truncate pl-2'>{document.title}</span>
                         <div className='flex items-center gap-x-2'>
-                            <Button variant="ghost" onClick={(e)=>handleRestore(e,document._id)} className='rounded-sm hover:bg-neutral-200'><Undo className='h-4 w-4 text-muted-foreground'/></Button>
+                            <Button variant="ghost" onClick={(e)=>handleRestore(e,document._id)} className='rounded-sm hover:bg-neutral-200'>
+                                <Undo className='h-4 w-4 text-muted-foreground'/>
+                            </Button>
                            <ConfirmModal onConfirm={()=>handleRemove(document._id)}>
-                                <Button variant="ghost" className='rounded-sm hover:bg-neutral-200'>
+                                <Button  onClick={(e) => e.stopPropagation()} variant="ghost" className='rounded-sm hover:bg-neutral-200'>
                                     <Trash className='h-4 w-4 text-muted-foreground'/>
                                 </Button>
                             </ConfirmModal>
