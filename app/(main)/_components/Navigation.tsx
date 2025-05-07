@@ -16,7 +16,9 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import TrashBox from './TrashBox';
+import { useSearch } from '@/hooks/use-search';
 const Navigation = () => {
+    const search =useSearch();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
     const navbarRef = React.useRef<HTMLDivElement>(null);
@@ -102,7 +104,7 @@ const Navigation = () => {
             <div>
                <UserItem/>
                <Item
-                onClick={()=>{}}
+                onClick={search.onOpen}
                 icon={Search}
                 label="Search"
                 isSearch={true}
