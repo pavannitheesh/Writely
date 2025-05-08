@@ -17,8 +17,10 @@ import {
   } from "@/components/ui/popover"
 import TrashBox from './TrashBox';
 import { useSearch } from '@/hooks/use-search';
+import { useSetting } from '@/hooks/use-setting';
 const Navigation = () => {
     const search =useSearch();
+    const settings=useSetting();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
     const navbarRef = React.useRef<HTMLDivElement>(null);
@@ -110,7 +112,7 @@ const Navigation = () => {
                 isSearch={true}
                 />
                <Item
-                onClick={()=>{}}
+                onClick={settings.onOpen}
                 icon={Settings}
                 label="Settings"
                 />

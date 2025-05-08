@@ -1,10 +1,8 @@
 import { useSetting } from "@/hooks/use-setting";
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -30,12 +28,6 @@ export const SettingsModal=()=>{
                     </div>
                     <ModeToggle/>
                 </div>
-                <DialogFooter className="justify-between">
-                    <Button variant="outline" onClick={settings.onClose}>
-                        Cancel
-                    </Button>
-                    <Button type="submit">Save changes</Button>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     )
