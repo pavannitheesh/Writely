@@ -49,7 +49,7 @@ const Item = ({id,documentIcon,label,icon:Icon,onClick,expanded,onExpand,active,
             parentDocument:id
         }).then((res)=>{
             if(!expanded) onExpand?.();
-           // router.push(`/documents/${res}`);
+            router.push(`/documents/${res}`);
         })
         toast.promise(promise,{
             loading:"Creating Document...",

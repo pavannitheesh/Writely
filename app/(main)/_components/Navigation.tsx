@@ -3,7 +3,7 @@ import React from 'react';
 import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import {useMediaQuery} from 'usehooks-ts';
 import {cn} from "@/lib/utils";
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import UserItem from './UserItem';
 import { useMutation} from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -18,9 +18,11 @@ import {
 import TrashBox from './TrashBox';
 import { useSearch } from '@/hooks/use-search';
 import { useSetting } from '@/hooks/use-setting';
+import { Navbar } from './navbar';
 const Navigation = () => {
     const search =useSearch();
     const settings=useSetting();
+    const params =useParams();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
     const navbarRef = React.useRef<HTMLDivElement>(null);
@@ -142,9 +144,16 @@ const Navigation = () => {
            
         </div>
         <div ref={navbarRef} className={cn('left-60 z-[99999] w-[calc(100%-240px)] absolute top-0',isMobile && "left-0 w-full",isResetting && "transition-all duration-300 ease-in-out")}>
+        {!!params.documentId ? (
+            <Navbar isCollapse={isCollapse} onResetWidth={handleReset}/>
+
+           ) :
+            (
             <nav className='bg-transparent px-3 py-2 w-full'>
                    {isCollapse && <MenuIcon className='h-6 w-6 text-muted-foreground' onClick={handleReset}/>}
             </nav>
+            )    
+    }
         </div>
         </div>
      );
