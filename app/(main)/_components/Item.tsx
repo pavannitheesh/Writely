@@ -78,7 +78,7 @@ const Item = ({id,documentIcon,label,icon:Icon,onClick,expanded,onExpand,active,
                 active && "bg-primary/5 text-primary font-semibold",
             )}>
                {!!id && (
-                <div role="button" className="h-full rounded-sm bg-neutral-300 dark:bg-neutral-600 mr-2" onClick={handleExpand}>
+                <div role="button" className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-2" onClick={handleExpand}>
                     <ChevronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50"/>
                     </div>
                )}

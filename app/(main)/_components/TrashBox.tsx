@@ -81,11 +81,11 @@ const TrashBox = () => {
                     <div key={document._id} role="button" className='flex items-center text-neutral-500 font-semibold justify-between mt-1 hover:bg-primary/5 rounded-md cursor-pointer w-full' onClick={()=>onClick(document._id)}>
                             <span className='truncate pl-2'>{document.title}</span>
                         <div className='flex items-center gap-x-2'>
-                            <Button variant="ghost" onClick={(e)=>handleRestore(e,document._id)} className='rounded-sm hover:bg-neutral-200'>
+                            <Button variant="ghost" onClick={(e)=>handleRestore(e,document._id)} className='rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-700'>
                                 <Undo className='h-4 w-4 text-muted-foreground'/>
                             </Button>
                            <ConfirmModal onConfirm={()=>handleRemove(document._id)}>
-                                <Button  onClick={(e) => e.stopPropagation()} variant="ghost" className='rounded-sm hover:bg-neutral-200'>
+                                <Button  onClick={(e) => e.stopPropagation()} variant="ghost" className='rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-700'>
                                     <Trash className='h-4 w-4 text-muted-foreground'/>
                                 </Button>
                             </ConfirmModal>
