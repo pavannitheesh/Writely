@@ -196,3 +196,21 @@ export const update=mutation({
         return doc;
     }
 })
+
+export const removeIcon =mutation({
+    args:{
+        id:v.id("documents")
+    },
+    handler:async (ctx,args) =>{
+         const identity=await ctx.auth.getUserIdentity();
+        if(!identity) throw new Error("User not authenticated");
+        const userId=identity.subject;
+         const document=await ctx.db.get(args.id);
+        if(!document) throw new Error("Document not found");
+        if(document.userId!==userId) throw new Error("You are not authorized to update this document");
+        const doc=await ctx.db.patch(args.id,{
+           icon:undefined
+        });
+        return doc;
+    }
+})
