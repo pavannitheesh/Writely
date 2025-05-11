@@ -4,14 +4,17 @@ import Toolbar from "@/components/toolbar";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
+import { useParams } from "next/navigation";
 
-interface DocumentIdProps{
-   params:{
-    documentId:Id<"documents">
-   }
-}
-const DocumentIdPage = ({params}:DocumentIdProps) => {
-    const document =useQuery(api.documents.getById,{documentId:params.documentId});
+// interface DocumentIdProps{
+//    params:{
+//     documentId:Id<"documents">
+//    }
+// }
+const DocumentIdPage = () => {
+    const params = useParams();
+    const documentId =params.documentId as Id<"documents">;
+    const document =useQuery(api.documents.getById,{documentId:documentId});
     if(document===undefined) {
         return (
             <div>

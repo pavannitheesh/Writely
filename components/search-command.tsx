@@ -54,7 +54,7 @@ import { useSearch } from "@/hooks/use-search";
                                 value={`${document._id}-${document.title}`}
                                 title={document.title}
                                 onSelect={() => {
-                                    //router.push(`/documents/${document._id}`);
+                                   router.push(`/documents/${document._id}`);
                                     onClose();
                                 }}
                             >
