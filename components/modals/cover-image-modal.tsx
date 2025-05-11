@@ -5,6 +5,7 @@ import {
     DialogTitle,
   } from "@/components/ui/dialog";
   import { useCoverImage } from "@/hooks/use-cover-image";
+import {SingleImageDropzoneUsage} from '@/components/single-image-dropzone'
 
   export const CoverImageModal = () => {
     const coverImage = useCoverImage();
@@ -17,6 +18,9 @@ import {
                 </DialogHeader>
                 <div>
                   TODO : Add Cover Image
+                </div>
+                <div>
+                <SingleImageDropzoneUsage/>
                 </div>
                 
             </DialogContent>

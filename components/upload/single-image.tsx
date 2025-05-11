@@ -11,6 +11,7 @@ import * as React from 'react';
 import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { ProgressCircle } from './progress-circle';
 import { formatFileSize, useUploader } from './uploader-provider';
+import { Spinner } from '../spinner';
 
 const DROPZONE_VARIANTS = {
   base: 'relative rounded-md p-4 flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border-2 border-dashed border-muted-foreground transition-colors duration-200 ease-in-out',
@@ -33,12 +34,12 @@ export interface SingleImageDropzoneProps
   /**
    * The width of the dropzone area in pixels.
    */
-  width: number;
+  width?: number;
 
   /**
    * The height of the dropzone area in pixels.
    */
-  height: number;
+  height?: number;
 
   /**
    * Whether the dropzone is disabled.
@@ -163,7 +164,12 @@ const SingleImageDropzone = React.forwardRef<
   const errorMessage = error ?? fileState?.error;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="relative  flex flex-col items-center">
+     {disabled && (
+      <div className="absolute inset-y-0 h-full w-full bg-background/80 z-50">
+        <Spinner/>
+      </div>
+     )}
       <div
         {...getRootProps({
           className: dropZoneClassName,
