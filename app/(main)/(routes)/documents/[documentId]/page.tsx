@@ -1,7 +1,8 @@
 "use client";
 
 import { Cover } from "@/components/cover";
-import Editor from "@/components/editor";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 import Toolbar from "@/components/toolbar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
@@ -26,6 +27,8 @@ const DocumentIdPage = () => {
         })
         
     }
+
+    const Editor =useMemo(()=>dynamic(()=>import("@/components/editor"),{ssr:false}),[]);
     if(document===undefined) {
         return (
             <div>
