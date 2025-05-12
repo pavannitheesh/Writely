@@ -31,7 +31,9 @@ const TrashBox = () => {
     }
     const handleRestore =async (e:React.MouseEvent<HTMLButtonElement,MouseEvent>,id:Id<"documents">)=>{
         e.stopPropagation();
-        const promise = restore({id});
+        const promise = restore({id}).then(()=>{
+            router.push(`/documents/${id}`);
+        });
         toast.promise(promise, {
             loading: "Restoring note ...",
             success:  "Restored successfully",
@@ -39,15 +41,16 @@ const TrashBox = () => {
           });
     }
     const handleRemove =async (id:Id<"documents">)=>{
-       const promise = remove({id});
+       const promise = remove({id}).then(()=>{
+
+            router.push("/documents");
+          
+    });
         toast.promise(promise, {
             loading: "Deleting note ...",
             success:  "Note Deleted successfully",
             error: "Error removing document",
           });
-          if(params.documentId===id){
-            router.push("/documents");
-          }
     }
         const handleSearch=(e:React.ChangeEvent<HTMLInputElement>)=>{
             setSearch(e.target.value);

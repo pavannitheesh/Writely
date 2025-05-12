@@ -1,9 +1,9 @@
 "use client"
 import React from 'react';
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from 'lucide-react';
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Router, Search, Settings, Trash } from 'lucide-react';
 import {useMediaQuery} from 'usehooks-ts';
 import {cn} from "@/lib/utils";
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import UserItem from './UserItem';
 import { useMutation} from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -23,6 +23,7 @@ const Navigation = () => {
     const search =useSearch();
     const settings=useSetting();
     const params =useParams();
+    const router =useRouter();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const sidebarRef = React.useRef<HTMLDivElement>(null);
     const navbarRef = React.useRef<HTMLDivElement>(null);
@@ -88,11 +89,12 @@ const Navigation = () => {
             }, 300);
         }
         const handleCreate = async () => {
-            const promise = create({title:"Untitled Document"});
+            const promise = create({title:"Untitled Document"}).then((documentId)=> router.push(`/documents/${documentId}`));
             toast.promise(promise,
                 {loading:"Creating a new note...",
                 success:"Note created successfully",
                 error:"Error creating note"});
+            
         }
 
 
