@@ -10,28 +10,30 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
+import React from "react";
 
 interface DocumentIdPageProps {
-  params: {
+  params: Promise<{
     documentId: Id<"documents">;
-  };
+  }>;
 }
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+  const parameters = React.use(params);
   const Editor = useMemo(
     () => dynamic(() => import("@/components/editor"), { ssr: false }),
     [],
   );
 
   const document = useQuery(api.documents.getById, {
-    documentId: params.documentId,
+  documentId: parameters.documentId,
   });
 
   const update = useMutation(api.documents.update);
 
   const onChange = (content: string) => {
     update({
-      id: params.documentId,
+      id: parameters.documentId,
       content,
     });
   };
