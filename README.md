@@ -1,6 +1,6 @@
 # Writely
 
-A powerful, real-time collaborative workspace that combines note-taking, knowledge management, and task organization capabilities. Built with modern web technologies, Zotion provides a seamless and intuitive interface for managing your digital workspace.
+A powerful, real-time collaborative workspace that combines note-taking, knowledge management, and task organization capabilities. Built with modern web technologies, Writely provides a seamless and intuitive interface for managing your digital workspace.
 
 It uses Convex as the backend, which is a real-time database that allows for instant data updates. The application also uses Edgestore, a distributed key-value store, to manage the images and files uploaded by the users.The user authentication is handled by Clerk, a secure and scalable user authentication API.
 
@@ -81,4 +81,18 @@ npx convex dev
 
 ```
 npm run dev
+```
+
+### Project Structure
+```
+Writely/
+├── app/                    # Next.js app directory
+│   ├── (main)/            # Main application routes
+│   ├── (homepage)/       # landing pages
+│   └── (public)/          # Public accessible routes
+├── components/            # Reusable UI components
+├── convex/                # Backend API and schema
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions
+└── public/               # Static assets
 ```
