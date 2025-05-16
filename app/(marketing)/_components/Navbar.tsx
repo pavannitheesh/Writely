@@ -23,7 +23,7 @@ const Navbar = () => {
                 <Button variant="ghost">Login</Button>
             </SignInButton>
             <SignInButton mode="modal">
-                <Button >Get Jotion for free</Button>
+                <Button >Get Writely for free</Button>
             </SignInButton>
             </>
             )
@@ -31,7 +31,7 @@ const Navbar = () => {
           {isAuthenticated && !isLoading && (
             <>
             <Button variant="ghost" asChild>
-                <Link href="/documents">Enter Jotion</Link>
+                <Link href="/documents">Enter Writely</Link>
             </Button>
             <UserButton />
             </>)}

@@ -44,7 +44,7 @@ import { useSearch } from "@/hooks/use-search";
     if(!isMounted) return null;
     return (
         <CommandDialog open={isOpen} onOpenChange={onClose}>
-                <CommandInput placeholder={`Search ${user?.username}'s Jotion...`} />
+                <CommandInput placeholder={`Search ${user?.username}'s Writely...`} />
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading="Documents">

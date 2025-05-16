@@ -9,7 +9,7 @@ const Logo = () => {
     return ( 
         <div className="hidden md:flex items-center gap-x-2 ">
             <Image src="/Notion-logo.svg" alt="Notion Logo" width={35} height={35} className="mb-2" />
-            <p className={cn("font-semibold",font.className)}>Jotion</p>
+            <p className={cn("font-semibold",font.className)}>Writely</p>
         </div>
      );
 }

@@ -20,7 +20,7 @@ const UserItem = () => {
                         <Avatar className="w-6 h-6 cursor-pointer" onClick={(e)=>e.stopPropagation()}>
                             <AvatarImage src={user?.imageUrl} alt="User" />
                         </Avatar>
-                            <p className="text-sm text-start line-clamp-1 font-medium">{user?.username}&apos;Jotion</p>
+                            <p className="text-sm text-start line-clamp-1 font-medium">{user?.username}&apos;Writely</p>
                         </div>
                         <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" size={20} />
 
@@ -42,7 +42,7 @@ const UserItem = () => {
             </div>
             <div className="space-y-1 ">
                 <p className="text-sm line-clamp-1">
-                    {user?.username}&apos;s Jotion
+                    {user?.username}&apos;s Writely
                 </p>
 
             </div>

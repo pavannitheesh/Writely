@@ -22,7 +22,7 @@ const Documentspage = () => {
         <div className="flex flex-col items-center justify-center h-full">
            <Image src="/empty.webp" alt="Documents" width={300} height={300} className="dark:hidden"  />
            <Image src="/empty-dark.webp" alt="Documents" width={300} height={300} className="hidden dark:block"  />
-            <p className="text-lg font-medium">Welcome {user?.username}&apos; jotion</p>
+            <p className="text-lg font-medium">Welcome {user?.username}&apos; Writely</p>
             <Button className="mt-2" onClick={handleCreate}>
                 <PlusCircle className="mr-2 " size={20} />Create Document
             </Button>

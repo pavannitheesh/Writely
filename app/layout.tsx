@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Notion",
-  description: "Notion is a note-taking and collaboration application.",
+  title: "Writely",
+  description: "Writely is a note-taking and collaboration application.",
   icons: {
     icon: [
       {
