@@ -4,7 +4,6 @@ import { DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
  } from  "@/components/ui/dropdown-menu";
  import { SignOutButton, useUser } from "@clerk/nextjs";
